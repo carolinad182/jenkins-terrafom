@@ -24,28 +24,28 @@ pipeline {
         }
         stage('ApplicationInit'){
             steps {
-                {
+                
                     sh 'terraform --version'
                     sh "terraform init"
-                }
+                
             }
         }
         stage('ApplicationValidate'){
             steps {
-                {
+                
                     sh 'terraform validate'
-                }
+                
             }
         }
         stage('ApplicationPlan'){
             steps {
-                {
+                
                     script {
                        
                         sh "terraform plan -out terraform-applications.tfplan;echo \$? > status"
                         stash name: "terraform-applications-plan", includes: "terraform-applications.tfplan"
                     }
-                }
+                
             }
         }
         stage('ApplicationApply'){
