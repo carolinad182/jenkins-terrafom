@@ -57,7 +57,7 @@ pipeline {
             steps {
                 
                             unstash "terraform-applications-plan"
-                            sh "terraform destroy -auto-approve"
+                            sh 'terraform apply terraform-applications.tfplan'
                         
                     }
                 }
