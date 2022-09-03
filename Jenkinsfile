@@ -63,10 +63,10 @@ pipeline {
                         currentBuild.result = 'UNSTABLE'
                     }
                     if(apply){
-                        {
+                        
                             unstash "terraform-applications-plan"
                             sh 'terraform apply terraform-applications.tfplan'
-                        }
+                        
                     }
                 }
             }
