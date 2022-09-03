@@ -16,10 +16,12 @@ pipeline {
 
     stages {
         stage('checkout') {
+            dir("terraform"){
             steps {
                  
                           git url: 'https://github.com/g0t4/jgsu-spring-petclinic.git', branch: 'main'
                         
+            }
             }
         }
         stage('ApplicationInit'){
