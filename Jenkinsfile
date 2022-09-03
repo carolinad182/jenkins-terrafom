@@ -55,20 +55,7 @@ pipeline {
         }
         stage('ApplicationApply'){
             steps {
-                script{
-                    def apply = false
-                    try {
-                        input message: 'confirm apply', ok: 'Apply Config'
-                        apply = true
-                    } catch (err) {
-                        apply = false
-                        {
-                            sh "terraform destroy -auto-approve"
-                        }
-                        currentBuild.result = 'UNSTABLE'
-                    }
-                    if(apply){
-                        
+                
                             unstash "terraform-applications-plan"
                             sh 'terraform apply terraform-applications.tfplan'
                         
@@ -76,5 +63,4 @@ pipeline {
                 }
             }
         }
-    }
-}
+
